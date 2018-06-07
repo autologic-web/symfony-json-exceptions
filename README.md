@@ -18,3 +18,17 @@ autologic_json_exceptions:
 ```
 
 Compatible with Symfony 2, 3 & 4. PHP 5.3 to 7.2.
+
+Returns consistently formatted errors with title, detail and status. Not found example:
+
+```json
+{
+    "errors": [
+        {
+            "title": "Not found",
+            "detail": "No route found for \"GET /api/silly\"",
+            "status": 404
+        }
+    ]
+}
+```
