@@ -2,11 +2,13 @@
 
 namespace Autologic\JSONExceptions\EventListener;
 
+use Autologic\JSONExceptions\Response\BadRequestResponse;
 use Autologic\JSONExceptions\Response\InternalServerErrorResponse;
 use Autologic\JSONExceptions\Response\MethodNotAllowedResponse;
 use Autologic\JSONExceptions\Response\NotFoundResponse;
 use Autologic\JSONExceptions\Response\ServiceUnavailableResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
@@ -54,6 +56,9 @@ class ExceptionListener
                 break;
             case $exception instanceof ServiceUnavailableHttpException:
                 $event->setResponse(new ServiceUnavailableResponse($exception->getMessage()));
+                break;
+            case $exception instanceof BadRequestHttpException:
+                $event->setResponse(new BadRequestResponse($exception->getMessage()));
                 break;
             default:
                 $message = sprintf(
