@@ -1,5 +1,5 @@
 {
-    "name": "autologic-web/json-exceptions",
+    "name": "autologic-web/symfony-json-exceptions",
     "description": "Graceful Symfony API errors",
     "version": "0.1.0",
     "type": "library",
