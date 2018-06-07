@@ -2,7 +2,7 @@
 
 namespace Autologic\JSONExceptions\Response;
 
-use Autologic\JSONEXceptions\Exception\InvalidResponseErrorException;
+use Autologic\JSONExceptions\Exception\InvalidResponseErrorException;
 use Autologic\JSONExceptions\ValueObject\Error;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;

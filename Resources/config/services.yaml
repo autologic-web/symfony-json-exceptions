@@ -1,7 +1,7 @@
 services:
 
     autologic_json_exceptions.event.exception_listener:
-        class: Autologic\JSONExceptions\Event\ExceptionListener
+        class: Autologic\JSONExceptions\EventListener\ExceptionListener
         arguments:
             - '%autologic_json_exceptions.env%'
             - '%autologic_json_exceptions.pretty_dev%'
