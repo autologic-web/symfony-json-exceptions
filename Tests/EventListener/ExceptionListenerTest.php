@@ -42,9 +42,10 @@ class ExceptionListenerTest extends TestCase
 
     public function testKernelException_InDev_withPrettyMode_SetsResponse()
     {
+        $listener = new ExceptionListener('dev', true);
         $exception = new NotFoundHttpException('Not found');
         Assert::assertNull(
-            $this->listener->onKernelException($this->createEvent($exception, NotFoundResponse::class))
+            $listener->onKernelException($this->createEvent($exception, NotFoundResponse::class))
         );
     }
 
