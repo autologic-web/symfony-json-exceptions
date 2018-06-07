@@ -1,0 +1,9 @@
+services:
+
+    autologic_json_exceptions.event.exception_listener:
+        class: Autologic\JSONExceptions\Event\ExceptionListener
+        arguments:
+            - '%autologic_json_exceptions.env%'
+            - '%autologic_json_exceptions.pretty_dev%'
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
