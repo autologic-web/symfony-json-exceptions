@@ -2,14 +2,14 @@
 
 namespace Autologic\JSONExceptions\EventListener;
 
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 use Autologic\JSONExceptions\Response\InternalServerErrorResponse;
 use Autologic\JSONExceptions\Response\MethodNotAllowedResponse;
 use Autologic\JSONExceptions\Response\NotFoundResponse;
 use Autologic\JSONExceptions\Response\ServiceUnavailableResponse;
+use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
 class ExceptionListener
 {
@@ -25,7 +25,7 @@ class ExceptionListener
 
     /**
      * @param string $environment
-     * @param bool $prettyDev
+     * @param bool   $prettyDev
      */
     public function __construct($environment, $prettyDev = false)
     {
@@ -35,6 +35,7 @@ class ExceptionListener
 
     /**
      * @param GetResponseForExceptionEvent $event
+     *
      * @return void
      */
     public function onKernelException(GetResponseForExceptionEvent $event)
@@ -51,7 +52,7 @@ class ExceptionListener
             case $exception instanceof MethodNotAllowedHttpException:
                 $event->setResponse(new MethodNotAllowedResponse($exception->getMessage()));
                 break;
-            case $exception instanceof ServiceUnavailableHttpException;
+            case $exception instanceof ServiceUnavailableHttpException:
                 $event->setResponse(new ServiceUnavailableResponse($exception->getMessage()));
                 break;
             default:

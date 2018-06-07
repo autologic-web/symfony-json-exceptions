@@ -2,8 +2,8 @@
 
 namespace Autologic\JSONExceptions\Response;
 
-use Symfony\Component\HttpFoundation\Response;
 use Autologic\JSONExceptions\ValueObject\Error;
+use Symfony\Component\HttpFoundation\Response;
 
 class InternalServerErrorResponse extends ErrorResponse
 {

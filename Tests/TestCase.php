@@ -10,6 +10,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * m::close() is required so Mockery can clean up it's container and run verifications
      * on our expectations i.e. shouldReceive()->once().
+     *
      * @return void
      */
     public function tearDown()
@@ -20,6 +21,7 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * @param string $class
+     *
      * @return m\Mock
      */
     public function createMock($class)

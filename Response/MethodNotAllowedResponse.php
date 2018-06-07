@@ -2,8 +2,8 @@
 
 namespace Autologic\JSONExceptions\Response;
 
-use Symfony\Component\HttpFoundation\Response;
 use Autologic\JSONExceptions\ValueObject\Error;
+use Symfony\Component\HttpFoundation\Response;
 
 class MethodNotAllowedResponse extends ErrorResponse
 {
@@ -12,10 +12,10 @@ class MethodNotAllowedResponse extends ErrorResponse
      */
     public function __construct($message)
     {
-        $responseErrors = [
+        $errors = [
             new Error('Method not allowed', $message, Response::HTTP_METHOD_NOT_ALLOWED),
         ];
 
-        parent::__construct($responseErrors, Response::HTTP_METHOD_NOT_ALLOWED);
+        parent::__construct($errors, Response::HTTP_METHOD_NOT_ALLOWED);
     }
 }

@@ -2,24 +2,24 @@
 
 namespace Autologic\JSONExceptions\Response;
 
+use Autologic\JSONEXceptions\Exception\InvalidResponseErrorException;
+use Autologic\JSONExceptions\ValueObject\Error;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use CRMInterface\Exception\InvalidResponseErrorException;
-use Autologic\JSONExceptions\ValueObject\Error;
 
 class ErrorResponse extends JsonResponse
 {
     /**
      * @param Error[] $responseErrors
-     * @param integer $status
-     * @param array $headers
-     * @param boolean $json
+     * @param int     $status
+     * @param array   $headers
+     * @param bool    $json
      */
     public function __construct(
-        array $responseErrors,
-        int $status = Response::HTTP_OK,
-        array $headers = [],
-        bool $json = false
+        $responseErrors,
+        $status = Response::HTTP_OK,
+        $headers = [],
+        $json = false
     ) {
         $errors = [
             'errors' => [],

@@ -15,14 +15,14 @@ class Error
     private $detail;
 
     /**
-     * @var integer
+     * @var int
      */
     private $status;
 
     /**
      * @param string $title
      * @param string $detail
-     * @param integer $status
+     * @param int    $status
      */
     public function __construct($title, $detail, $status)
     {
@@ -48,7 +48,7 @@ class Error
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getStatus()
     {

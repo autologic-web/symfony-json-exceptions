@@ -2,23 +2,23 @@
 
 namespace Autologic\JSONExceptions\Response;
 
-use Symfony\Component\HttpFoundation\Response;
 use Autologic\JSONExceptions\ValueObject\Error;
+use Symfony\Component\HttpFoundation\Response;
 
 class BadRequestResponse extends ErrorResponse
 {
     /**
      * @param string $title
      * @param string $detail
-     * @param array $headers
-     * @param boolean $json
+     * @param array  $headers
+     * @param bool   $json
      */
     public function __construct($title, $detail, $headers = [], $json = false)
     {
-        $responseErrors = [
+        $errors = [
             new Error($title, $detail, Response::HTTP_BAD_REQUEST),
         ];
 
-        parent::__construct($responseErrors, Response::HTTP_BAD_REQUEST, $headers, $json);
+        parent::__construct($errors, Response::HTTP_BAD_REQUEST, $headers, $json);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace Autologic\JSONExceptions\Response;
 
-use Symfony\Component\HttpFoundation\Response;
 use Autologic\JSONExceptions\ValueObject\Error;
+use Symfony\Component\HttpFoundation\Response;
 
 class NotFoundResponse extends ErrorResponse
 {
@@ -12,10 +12,10 @@ class NotFoundResponse extends ErrorResponse
      */
     public function __construct($message = '')
     {
-        $responseErrors = [
+        $errors = [
             new Error('Not found', $message, Response::HTTP_NOT_FOUND),
         ];
 
-        parent::__construct($responseErrors, Response::HTTP_NOT_FOUND);
+        parent::__construct($errors, Response::HTTP_NOT_FOUND);
     }
 }

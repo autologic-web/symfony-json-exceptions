@@ -2,10 +2,10 @@
 
 namespace Autologic\JSONExceptions\Response;
 
+use Autologic\JSONExceptions\ValueObject\Error;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Autologic\JSONExceptions\ValueObject\Error;
 
 class FormInvalidResponse extends ErrorResponse
 {
@@ -28,11 +28,12 @@ class FormInvalidResponse extends ErrorResponse
 
     /**
      * @param FormError $error
+     *
      * @return string
      */
-    private function parseErrorMessage(FormError $error): string
+    private function parseErrorMessage(FormError $error)
     {
-        if ($error->getCause() !== null  && $error->getCause()->getCause() !== null) {
+        if ($error->getCause() !== null && $error->getCause()->getCause() !== null) {
             return $error->getCause()->getCause()->getMessage();
         }
 

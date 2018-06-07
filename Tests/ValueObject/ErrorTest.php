@@ -31,7 +31,7 @@ class ErrorTest extends TestCase
     public function testToArray_ReturnsData()
     {
         $expected = [
-            'title' => self::TITLE,
+            'title'  => self::TITLE,
             'detail' => self::DETAIL,
             'status' => self::STATUS,
         ];
