@@ -7,6 +7,7 @@ use Autologic\JSONExceptions\Response\InternalServerErrorResponse;
 use Autologic\JSONExceptions\Response\MethodNotAllowedResponse;
 use Autologic\JSONExceptions\Response\NotFoundResponse;
 use Autologic\JSONExceptions\Response\ServiceUnavailableResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
@@ -46,19 +47,28 @@ class ExceptionListener
             return;
         }
 
-        $exception = $event->getException();
+        $event->setResponse($this->getResponse($event->getException()));
+    }
+
+    /**
+     * @param \Exception $exception
+     *
+     * @return JsonResponse
+     */
+    private function getResponse($exception)
+    {
         switch (true) {
             case $exception instanceof NotFoundHttpException:
-                $event->setResponse(new NotFoundResponse($exception->getMessage()));
+                $response = new NotFoundResponse($exception->getMessage());
                 break;
             case $exception instanceof MethodNotAllowedHttpException:
-                $event->setResponse(new MethodNotAllowedResponse($exception->getMessage()));
+                $response = new MethodNotAllowedResponse($exception->getMessage());
                 break;
             case $exception instanceof ServiceUnavailableHttpException:
-                $event->setResponse(new ServiceUnavailableResponse($exception->getMessage()));
+                $response = new ServiceUnavailableResponse($exception->getMessage());
                 break;
             case $exception instanceof BadRequestHttpException:
-                $event->setResponse(new BadRequestResponse($exception->getMessage()));
+                $response = new BadRequestResponse($exception->getMessage());
                 break;
             default:
                 $message = sprintf(
@@ -67,8 +77,10 @@ class ExceptionListener
                     $exception->getFile(),
                     $exception->getLine()
                 );
-                $event->setResponse(new InternalServerErrorResponse($message));
+                $response = new InternalServerErrorResponse($message);
                 break;
         }
+
+        return $response;
     }
 }
