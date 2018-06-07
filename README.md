@@ -32,3 +32,5 @@ Returns consistently formatted errors with title, detail and status. Not found e
     ]
 }
 ```
+
+Credit to [@dannym87](https://github.com/dannym87) for first implementing this in one of our services. It's now a library for re-use.
