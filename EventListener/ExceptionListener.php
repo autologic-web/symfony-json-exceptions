@@ -8,11 +8,12 @@ use Autologic\JSONExceptions\Response\MethodNotAllowedResponse;
 use Autologic\JSONExceptions\Response\NotFoundResponse;
 use Autologic\JSONExceptions\Response\ServiceUnavailableResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
+use Throwable;
 
 class ExceptionListener
 {
@@ -41,17 +42,17 @@ class ExceptionListener
      *
      * @return void
      */
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event)
     {
         if ($this->environment === 'dev' && !$this->prettyDev) {
             return;
         }
 
-        $event->setResponse($this->getResponse($event->getException()));
+        $event->setResponse($this->getResponse($event->getThrowable()));
     }
 
     /**
-     * @param \Exception $exception
+     * @param Throwable $exception
      *
      * @return JsonResponse
      */
